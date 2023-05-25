@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import java.util.concurrent.Executors;
 
-public abstract class BaseAdapter<T, VH extends BaseViewHolder<T>>
+public abstract class BaseRecyclerViewAdapter<T, VH extends BaseViewHolder<T>>
         extends ListAdapter<T, VH> {
-    protected BaseAdapter(@NonNull DiffUtil.ItemCallback<T> diffCallback) {
+    protected BaseRecyclerViewAdapter(@NonNull DiffUtil.ItemCallback<T> diffCallback) {
         super(new AsyncDifferConfig.Builder(diffCallback)
                 .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
                 .build());

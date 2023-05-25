@@ -31,14 +31,29 @@ public class BaseViewModel extends ViewModel {
     public @Inject BaseViewModel() {
     }
 
+    /*
+    *  Phương thức này dùng để đăng ký thực thi một tác vụ (Gọi API, Thao tác Database, ...)
+    *
+    *   Disposable: một tác vụ có thể hủy ngay khi không cần thực thi tác vụ này nữa
+    *
+    *   Ví dụ: khi thoát khỏi 1 màn hình thì các tác vụ đang chạy của màn hình này sẽ
+    *   đồng loạt bị hủy do không cần sử dụng đến nữa
+    * */
     protected void registerDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
     }
 
+    /*
+    *  Phương thức này thực thi tác vụ thời gian chạy ngầm không cần hiển thị lên giao diện
+    *
+    *  Single<>: tác vụ chạy 1 lần là đưa ra kết quả
+    *  IResultListener: callback xử lý kết quả trả về
+    *
+    *   return => 1 tác vụ thực thi
+    * */
     public <T> Disposable executeTask(
             Single<T> task,
-            IResultListener<T> resultListener,
-            Boolean loadingVisible
+            IResultListener<T> resultListener
     ) {
         return task
                 .subscribeOn(Schedulers.io())
@@ -46,6 +61,15 @@ public class BaseViewModel extends ViewModel {
                 .subscribe(resultListener::onSuccess, resultListener::onError);
     }
 
+    /*
+     *  Phương thức này thực thi tác vụ thời gian chạy tốn nhiều thời gian
+     *  cần hiển thị giao diện "ĐANG TẢI" để người dùng đợi
+     *
+     *  Single<>: tác vụ chạy 1 lần là đưa ra kết quả
+     *  IResultListener: callback xử lý kết quả trả về
+     *
+     *   return => 1 tác vụ thực thi (có hiển thị giao diện "ĐANG TẢI")
+     * */
     public <T> Disposable executeTaskWithLoading(
             Single<T> task,
             IResultListener<T> resultListener
@@ -67,6 +91,11 @@ public class BaseViewModel extends ViewModel {
         isLoading.setValue(false);
     }
 
+
+    /*
+    *  Hủy đồng loạt các tác vụ khi thoát màn hình
+    *  onCleared() sử dụng khi ViewModel này không còn cần thiết để sử dụng
+    * */
     @Override
     protected void onCleared() {
         compositeDisposable.clear();
