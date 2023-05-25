@@ -40,20 +40,23 @@ public class BaseViewModel extends ViewModel {
             IResultListener<T> resultListener,
             Boolean loadingVisible
     ) {
-        if (loadingVisible) {
-            return task
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe(disposable -> showLoading())
-                    .doOnSuccess(disposable -> hideLoading())
-                    .doOnError(disposable -> hideLoading())
-                    .subscribe(resultListener::onSuccess, resultListener::onError);
-        } else {
-            return task
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(resultListener::onSuccess, resultListener::onError);
-        }
+        return task
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(resultListener::onSuccess, resultListener::onError);
+    }
+
+    public <T> Disposable executeTaskWithLoading(
+            Single<T> task,
+            IResultListener<T> resultListener
+    ) {
+        return task
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(disposable -> showLoading())
+                .doOnSuccess(disposable -> hideLoading())
+                .doOnError(disposable -> hideLoading())
+                .subscribe(resultListener::onSuccess, resultListener::onError);
     }
 
     protected void showLoading() {
