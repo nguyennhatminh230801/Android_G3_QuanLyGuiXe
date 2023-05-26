@@ -1,5 +1,7 @@
 package com.nhom3.quanlyguixe.di;
 
+import com.nhom3.quanlyguixe.data.repo.remote.ApiService;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -9,6 +11,7 @@ import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -18,9 +21,10 @@ public class NetworkModule {
     @Singleton
     public Retrofit provideRetrofit(){
         return new Retrofit.Builder()
-                .baseUrl("https://raw.githubusercontent.com/android10/Sample-Data/master/Android-CleanArchitecture-Kotlin/")
+                .baseUrl("https://646f2b6809ff19b12086b813.mockapi.io/")
                 .client(createClient())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
     }
 
@@ -30,5 +34,11 @@ public class NetworkModule {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC));
         return okHttpClientBuilder.build();
+    }
+
+    @Provides
+    @Singleton
+    public ApiService provideApiService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
     }
 }
