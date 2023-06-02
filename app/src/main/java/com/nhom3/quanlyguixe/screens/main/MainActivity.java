@@ -1,66 +1,79 @@
 package com.nhom3.quanlyguixe.screens.main;
 
-import android.widget.Toast;
+import android.view.Menu;
 
-import androidx.lifecycle.ViewModelProvider;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.nhom3.quanlyguixe.data.model.User;
+import com.google.android.material.navigation.NavigationView;
+import com.nhom3.quanlyguixe.R;
 import com.nhom3.quanlyguixe.databinding.ActivityMainBinding;
 import com.nhom3.quanlyguixe.util.base.BaseActivity;
-
-import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
-    private MainViewModel mainViewModel;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     public ActivityMainBinding inflateViewBinding() {
         return ActivityMainBinding.inflate(getLayoutInflater());
     }
 
+    //Khởi tạo màn hình, dữ liệu
     @Override
     protected void initScreenData() {
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainViewModel.getAllUsers();
+        //Khởi tạo thanh tiêu đề
+        setSupportActionBar(viewBinding.appBarMain.toolbar);
+        initNavigationDrawer();
     }
 
+    // Thêm các sự kiện
     @Override
     protected void addEvent() {
-        viewBinding.buttonLogin.setOnClickListener(view -> {
-            User user = new User();
-            user.setUsername(Objects.requireNonNull(viewBinding.inputLayoutUsername.getEditText()).getText().toString());
-            user.setPassword(Objects.requireNonNull(viewBinding.inputLayoutPassword.getEditText()).getText().toString());
 
-            boolean hasUserName = false;
+    }
 
-            if (mainViewModel.getListUsers().getValue() != null) {
-                for (User user1 : mainViewModel.getListUsers().getValue()) {
-                    if (user1.getPassword().equals(user.getPassword())
-                            && user1.getUsername().equals(user.getUsername())) {
-                        hasUserName = true;
-                        break;
-                    }
-                }
+    // Gán các biến ViewModel tiện cho việc cập nhật dữ liệu
+    @Override
+    protected void bindToViewModel() {
 
-                if (hasUserName) {
-                    Toast.makeText(getBaseContext(), "Thành công!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getBaseContext(), "Thất bại!!", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(getBaseContext(), "Không có dữ liệu!!", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
-    protected void bindToViewModel() {
-        mainViewModel.checkHasError().observe(this, error -> {
-            Toast.makeText(getBaseContext(), error, Toast.LENGTH_SHORT).show();
-        });
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+
+    private void initNavigationDrawer() {
+        DrawerLayout drawer = viewBinding.drawerLayout;
+        NavigationView navigationView = viewBinding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setOpenableLayout(drawer)
+                .build();
+//        mAppBarConfiguration = new AppBarConfiguration.Builder()
+//                .setOpenableLayout(drawer)
+//                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 }
