@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         //Khởi tạo thanh tiêu đề
         setSupportActionBar(viewBinding.appBarMain.toolbar);
         initNavigationDrawer();
-        updateTitleToolBar("Quản lý nhà xe");
+        //updateTitleToolBar("Quản lý nhà xe");
     }
 
     // Thêm các sự kiện
@@ -80,6 +80,33 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        viewBinding.navView.setNavigationItemSelectedListener(item -> {
+            navController.popBackStack(R.id.nav_home, false);
+
+            switch (item.getItemId()) {
+                case R.id.nav_reports_detail:
+                    navController.navigate(R.id.action_nav_home_to_nav_reports_detail);
+                    break;
+                case R.id.nav_list_tickets:
+                    navController.navigate(R.id.action_nav_home_to_nav_list_tickets);
+                    break;
+                case R.id.nav_list_employee:
+                    navController.navigate(R.id.action_nav_home_to_nav_list_employee);
+                    break;
+                case R.id.nav_list_parking_lots:
+                    navController.navigate(R.id.action_nav_home_to_nav_list_parking_lots);
+                    break;
+                case R.id.nav_list_shift_manager:
+                    navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
+                    break;
+                default:
+                    break;
+            }
+
+            viewBinding.drawerLayout.closeDrawers();
+            return true;
+        });
     }
 
     public void updateTitleToolBar(String title) {

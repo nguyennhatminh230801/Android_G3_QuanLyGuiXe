@@ -4,15 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder<T, VB extends ViewBinding> extends RecyclerView.ViewHolder {
 
     private T item;
 
-    public BaseViewHolder(@NonNull ViewBinding binding) {
+    protected VB viewBinding;
+
+    public BaseViewHolder(@NonNull VB binding) {
+
         super(binding.getRoot());
+        this.viewBinding = binding;
     }
 
     public void bindItem(T item) {
         this.item = item;
     }
+
+
 }
