@@ -7,14 +7,31 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="@string/nav_home_title" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_list_employee"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_list_employee_title" />
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_list_shift_manager"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_list_shift_manager_title" />
+
+        <item
+            android:id="@+id/nav_list_tickets"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_list_ticket_title" />
+
+        <item
+            android:id="@+id/nav_list_parking_lots"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_list_parking_lots_title" />
+
+        <item
+            android:id="@+id/nav_reports_detail"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_reports_detail_title" />
     </group>
 </menu>

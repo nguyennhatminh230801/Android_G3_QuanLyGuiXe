@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         //Khởi tạo thanh tiêu đề
         setSupportActionBar(viewBinding.appBarMain.toolbar);
         initNavigationDrawer();
+        updateTitleToolBar("Quản lý nhà xe");
     }
 
     // Thêm các sự kiện
@@ -65,15 +66,23 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         NavigationView navigationView = viewBinding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+        mAppBarConfiguration =
+                new AppBarConfiguration.Builder(
+                        R.id.nav_home,
+                        R.id.nav_list_employee,
+                        R.id.nav_list_shift_manager,
+                        R.id.nav_list_tickets,
+                        R.id.nav_list_parking_lots,
+                        R.id.nav_reports_detail
+                )
                 .setOpenableLayout(drawer)
                 .build();
-//        mAppBarConfiguration = new AppBarConfiguration.Builder()
-//                .setOpenableLayout(drawer)
-//                .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    public void updateTitleToolBar(String title) {
+        viewBinding.appBarMain.toolbar.setTitle(title);
     }
 }
