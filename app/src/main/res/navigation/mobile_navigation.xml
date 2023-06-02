@@ -7,19 +7,37 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.nhom3.quanlyguixe.screens.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:name="com.nhom3.quanlyguixe.screens.main.HomeFragment"
+        android:label="@string/nav_home_title"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.nhom3.quanlyguixe.screens.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_list_employee"
+        android:name="com.nhom3.quanlyguixe.screens.employees.ListEmployeeFragment"
+        android:label="@string/nav_list_employee_title"
+        tools:layout="@layout/fragment_list_employee" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.nhom3.quanlyguixe.screens.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_list_shift_manager"
+        android:name="com.nhom3.quanlyguixe.screens.shiftmanager.ListShiftManagerFragment"
+        android:label="@string/nav_list_shift_manager_title"
+        tools:layout="@layout/fragment_list_shift_manager" />
+
+    <fragment
+        android:id="@+id/nav_list_tickets"
+        android:name="com.nhom3.quanlyguixe.screens.tickets.ListTicketFragment"
+        android:label="@string/nav_list_ticket_title"
+        tools:layout="@layout/fragment_list_tickets" />
+
+    <fragment
+        android:id="@+id/nav_list_parking_lots"
+        android:name="com.nhom3.quanlyguixe.screens.parkinglots.ListParkingLotsFragment"
+        android:label="@string/nav_list_parking_lots_title"
+        tools:layout="@layout/fragment_list_parking_lots" />
+
+    <fragment
+        android:id="@+id/nav_reports_detail"
+        android:name="com.nhom3.quanlyguixe.screens.reports.ReportDetailFragment"
+        android:label="@string/nav_reports_detail_title"
+        tools:layout="@layout/fragment_report_detail" />
 </navigation>
