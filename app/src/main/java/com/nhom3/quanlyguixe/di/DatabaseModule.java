@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.nhom3.quanlyguixe.data.repo.local.employee.EmployeeDao;
 import com.nhom3.quanlyguixe.util.QuanLyGuiXeDatabase;
 
 import javax.inject.Singleton;
@@ -26,5 +27,11 @@ public class DatabaseModule {
                 QuanLyGuiXeDatabase.class,
                 "QuanLyGuiXeDB"
         ).build();
+    }
+
+    @Provides
+    @Singleton
+    public EmployeeDao provideEmployeeDao(QuanLyGuiXeDatabase database) {
+        return database.employeeDao();
     }
 }
