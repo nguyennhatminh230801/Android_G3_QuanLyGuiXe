@@ -3,6 +3,7 @@ package com.nhom3.quanlyguixe.screens.main;
 import android.view.Menu;
 
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.nhom3.quanlyguixe.R;
 import com.nhom3.quanlyguixe.databinding.ActivityMainBinding;
+import com.nhom3.quanlyguixe.screens.tickets.TicketViewModel;
 import com.nhom3.quanlyguixe.util.base.BaseActivity;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -20,6 +22,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    //private TicketViewModel ticketViewModel;
+
     @Override
     public ActivityMainBinding inflateViewBinding() {
         return ActivityMainBinding.inflate(getLayoutInflater());
@@ -28,6 +32,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     //Khởi tạo màn hình, dữ liệu
     @Override
     protected void initScreenData() {
+        //Khởi tạo các ActivityViewModel
+        //ticketViewModel = new ViewModelProvider(this).get(TicketViewModel.class);
+
         //Khởi tạo thanh tiêu đề
         setSupportActionBar(viewBinding.appBarMain.toolbar);
         initNavigationDrawer();

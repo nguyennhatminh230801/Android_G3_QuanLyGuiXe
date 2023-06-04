@@ -43,7 +43,12 @@
         android:id="@+id/nav_list_tickets"
         android:name="com.nhom3.quanlyguixe.screens.tickets.ListTicketFragment"
         android:label="@string/nav_list_ticket_title"
-        tools:layout="@layout/fragment_list_tickets" />
+        tools:layout="@layout/fragment_list_tickets" >
+
+        <action
+            android:id="@+id/action_nav_list_tickets_to_nav_add_update_tickets"
+            app:destination="@id/nav_add_update_tickets" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_list_parking_lots"
@@ -56,4 +61,10 @@
         android:name="com.nhom3.quanlyguixe.screens.reports.ReportDetailFragment"
         android:label="@string/nav_reports_detail_title"
         tools:layout="@layout/fragment_report_detail" />
+
+    <fragment
+        android:id="@+id/nav_add_update_tickets"
+        android:name="com.nhom3.quanlyguixe.screens.tickets.AddUpdateTicketFragment"
+        tools:layout="@layout/fragment_add_update_ticket"
+        android:label="Thêm vé xe" />
 </navigation>

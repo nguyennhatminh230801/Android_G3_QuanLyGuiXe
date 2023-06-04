@@ -1,5 +1,8 @@
 package com.nhom3.quanlyguixe.screens.tickets;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.nhom3.quanlyguixe.data.model.Tickets;
 import com.nhom3.quanlyguixe.data.repo.TicketRepository;
 import com.nhom3.quanlyguixe.util.base.BaseViewModel;
@@ -14,11 +17,28 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class TicketViewModel extends BaseViewModel {
 
+    private final MutableLiveData<List<Tickets>> _tickets = new MutableLiveData<>();
+
+    private final MutableLiveData<Boolean> _backToPreviousScreen = new MutableLiveData<>(false);
+    public LiveData<List<Tickets>> getTickets() {
+        return _tickets;
+    }
+
+    public LiveData<Boolean> getBackToPreviousScreen() {
+        return _backToPreviousScreen;
+    }
+
+    public void resetBackToPreviousScreenState() {
+        _backToPreviousScreen.setValue(false);
+    }
+
     private final TicketRepository ticketRepository;
 
     @Inject
     public TicketViewModel(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
+
+        getAllTickets();
     }
 
     public void getAllTickets() {
@@ -28,12 +48,12 @@ public class TicketViewModel extends BaseViewModel {
                         new IResultListener<List<Tickets>>() {
                             @Override
                             public void onSuccess(List<Tickets> data) {
-
+                                _tickets.setValue(data);
                             }
 
                             @Override
                             public void onError(Throwable throwable) {
-
+                                error.postValue(throwable.getMessage());
                             }
                         }
                 )
@@ -47,12 +67,12 @@ public class TicketViewModel extends BaseViewModel {
                         new IResultListener<Long>() {
                             @Override
                             public void onSuccess(Long data) {
-
+                                _backToPreviousScreen.setValue(true);
                             }
 
                             @Override
                             public void onError(Throwable throwable) {
-
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
@@ -66,12 +86,12 @@ public class TicketViewModel extends BaseViewModel {
                         new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
-
+                                _backToPreviousScreen.setValue(true);
                             }
 
                             @Override
                             public void onError(Throwable throwable) {
-
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
@@ -89,7 +109,7 @@ public class TicketViewModel extends BaseViewModel {
 
                             @Override
                             public void onError(Throwable throwable) {
-
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
