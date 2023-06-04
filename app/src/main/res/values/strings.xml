@@ -16,4 +16,17 @@
     <string name="nav_list_ticket_title">Vé xe</string>
     <string name="nav_list_parking_lots_title">Bãi đỗ xe</string>
     <string name="nav_reports_detail_title">Báo cáo doanh thu\n</string>
+    <string name="text_temp_ticket_id">Mã vé: %1$d</string>
+    <string name="text_temp_ticket_type">Loại vé: %1$s</string>
+    <string name="text_temp_ticket_price">Giá bán: %1$s Đồng</string>
+    <string name="text_temp_ticket_expiration_date">Hạn sử dụng: %1$s</string>
+    <string name="text_temp_empty_ticket">Không có loại vé nào!!</string>
+    <string name="text_content_description_add_ticket">Thêm vé</string>
+    <string name="text_temp_input_ticket_type">Loại vé</string>
+    <string name="text_temp_input_ticket_price">Giá bán</string>
+    <string name="text_input_ticket_expiration_date">Hạn sử dụng</string>
+    <string name="text_button_add_ticket">Thêm vé</string>
+    <string name="text_clear_all_info">Xóa dữ liệu</string>
+    <string name="text_required">Bắt buộc</string>
+    <string name="button_update_ticket">Sửa vé</string>
 </resources>

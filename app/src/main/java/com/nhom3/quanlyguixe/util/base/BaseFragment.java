@@ -1,10 +1,12 @@
 package com.nhom3.quanlyguixe.util.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,11 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected VB viewBinding;
 
     public abstract VB inflateViewBinding(LayoutInflater inflater);
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override
@@ -42,4 +49,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected abstract void addEvent();
 
     protected abstract void bindToViewModel();
+
+    protected void onGotoPreviousScreenEvent() {}
 }

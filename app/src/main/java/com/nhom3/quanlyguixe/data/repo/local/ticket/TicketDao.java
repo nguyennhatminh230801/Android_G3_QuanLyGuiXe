@@ -3,6 +3,7 @@ package com.nhom3.quanlyguixe.data.repo.local.ticket;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -21,7 +22,7 @@ public interface TicketDao {
     @Query("SELECT * FROM tickets WHERE ticketID = :ticketID")
     Single<Tickets> getTicketByID(int ticketID);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Single<Long> insertTicket(Tickets tickets);
 
     @Update

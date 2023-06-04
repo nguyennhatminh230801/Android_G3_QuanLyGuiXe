@@ -3,6 +3,8 @@ package com.nhom3.quanlyguixe.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,7 +18,7 @@ import java.util.Objects;
 public class Tickets implements Parcelable {
     @SerializedName("ticket_id")
     @Expose
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int ticketID;
 
     @SerializedName("ticket_type")
@@ -25,7 +27,7 @@ public class Tickets implements Parcelable {
 
     @SerializedName("price")
     @Expose
-    private double price;
+    private Long price;
 
     @SerializedName("expiration_date")
     @Expose
@@ -35,7 +37,21 @@ public class Tickets implements Parcelable {
 
     }
 
-    public Tickets(int ticketID, String ticketType, double price, Date expirationDate) {
+    public static DiffUtil.ItemCallback<Tickets> getDiffCallback() {
+        return new DiffUtil.ItemCallback<Tickets>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Tickets oldItem, @NonNull Tickets newItem) {
+                return oldItem.getTicketID() == newItem.getTicketID();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Tickets oldItem, @NonNull Tickets newItem) {
+                return oldItem.equals(newItem);
+            }
+        };
+    }
+
+    public Tickets(int ticketID, String ticketType, Long price, Date expirationDate) {
         this.ticketID = ticketID;
         this.ticketType = ticketType;
         this.price = price;
@@ -58,11 +74,11 @@ public class Tickets implements Parcelable {
         this.ticketType = ticketType;
     }
 
-    public double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
@@ -114,7 +130,7 @@ public class Tickets implements Parcelable {
     public void readFromParcel(Parcel source) {
         this.ticketID = source.readInt();
         this.ticketType = source.readString();
-        this.price = source.readDouble();
+        this.price = source.readLong();
         long tmpExpirationDate = source.readLong();
         this.expirationDate = tmpExpirationDate == -1 ? null : new Date(tmpExpirationDate);
     }
@@ -122,7 +138,7 @@ public class Tickets implements Parcelable {
     protected Tickets(Parcel in) {
         this.ticketID = in.readInt();
         this.ticketType = in.readString();
-        this.price = in.readDouble();
+        this.price = in.readLong();
         long tmpExpirationDate = in.readLong();
         this.expirationDate = tmpExpirationDate == -1 ? null : new Date(tmpExpirationDate);
     }
