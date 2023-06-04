@@ -189,7 +189,7 @@ public class AddUpdateTicketFragment
             if (backToPreviousScreen) {
                 String displayText = isUpdate ? "Sửa dữ liệu thành công" : "Thêm dữ liệu thành công";
                 Toast.makeText(getContext(), displayText, Toast.LENGTH_SHORT).show();
-                navController.popBackStack();
+                navController.navigateUp();
             }
         });
     }

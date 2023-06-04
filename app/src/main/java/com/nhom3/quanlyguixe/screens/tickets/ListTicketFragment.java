@@ -1,9 +1,9 @@
 package com.nhom3.quanlyguixe.screens.tickets;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,7 +16,6 @@ import com.nhom3.quanlyguixe.databinding.FragmentListTicketsBinding;
 import com.nhom3.quanlyguixe.util.Constant;
 import com.nhom3.quanlyguixe.util.base.BaseFragment;
 import com.nhom3.quanlyguixe.util.dialog.AlertDialogFactory;
-import com.nhom3.quanlyguixe.util.interfaces.IOnAcceptListener;
 import com.nhom3.quanlyguixe.util.interfaces.IUpdateDeleteListener;
 
 import java.util.ArrayList;
@@ -95,6 +94,12 @@ public class ListTicketFragment extends BaseFragment<FragmentListTicketsBinding>
                             ticketsList.remove(item);
                             ticketAdapter.submitList(ticketsList);
                             ticketAdapter.notifyItemRemoved(position);
+
+                            Toast.makeText(getContext(), "Xóa vé xe thành công", Toast.LENGTH_SHORT).show();
+                            if(ticketsList.size() == 0) {
+                                viewBinding.recyclerViewTickets.setVisibility(View.GONE);
+                                viewBinding.textEmptyTickets.setVisibility(View.VISIBLE);
+                            }
                         }).show();
             }
         });
