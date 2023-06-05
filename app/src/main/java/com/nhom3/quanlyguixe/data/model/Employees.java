@@ -3,6 +3,8 @@ package com.nhom3.quanlyguixe.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,12 +12,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Employees implements Parcelable {
     @SerializedName("employee_id")
     @Expose
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int employeeID;
 
     @SerializedName("fullname")
@@ -41,6 +44,19 @@ public class Employees implements Parcelable {
     public Employees() {
     }
 
+    public static DiffUtil.ItemCallback<Employees> getDiffCallback() {
+        return new DiffUtil.ItemCallback<Employees>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Employees oldItem, @NonNull Employees newItem) {
+                return oldItem.getEmployeeID() == newItem.getEmployeeID();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Employees oldItem, @NonNull Employees newItem) {
+                return oldItem.equals(newItem);
+            }
+        };
+    }
     public Employees(int employeeID, String fullName, Date dateOfBirth, String phoneNumber, String email, String employeeImageURL) {
         this.employeeID = employeeID;
         this.fullName = fullName;
@@ -96,6 +112,19 @@ public class Employees implements Parcelable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employees)) return false;
+        Employees employees = (Employees) o;
+        return getEmployeeID() == employees.getEmployeeID() && Objects.equals(getFullName(), employees.getFullName()) && Objects.equals(getDateOfBirth(), employees.getDateOfBirth()) && Objects.equals(getPhoneNumber(), employees.getPhoneNumber()) && Objects.equals(getEmail(), employees.getEmail()) && Objects.equals(getEmployeeImageURL(), employees.getEmployeeImageURL());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmployeeID(), getFullName(), getDateOfBirth(), getPhoneNumber(), getEmail(), getEmployeeImageURL());
     }
 
     @Override
