@@ -10,5 +10,6 @@ public class Constant {
 
     public static final String KEY_BUNDLE_TICKET = "tickets";
 
+    public static final String KEY_BUNDLE_EMPLOYEE = "employee";
     public static final String KEY_BUNDLE_IS_UPDATE = "isUpdate";
 }

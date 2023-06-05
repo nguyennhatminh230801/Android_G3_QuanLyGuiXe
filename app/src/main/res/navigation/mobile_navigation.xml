@@ -31,7 +31,11 @@
         android:id="@+id/nav_list_employee"
         android:name="com.nhom3.quanlyguixe.screens.employees.ListEmployeeFragment"
         android:label="@string/nav_list_employee_title"
-        tools:layout="@layout/fragment_list_employee" />
+        tools:layout="@layout/fragment_list_employee" >
+        <action
+            android:id="@+id/action_nav_list_employee_to_nav_add_update_employee"
+            app:destination="@id/nav_add_update_employee" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_list_shift_manager"
@@ -67,4 +71,10 @@
         android:name="com.nhom3.quanlyguixe.screens.tickets.AddUpdateTicketFragment"
         tools:layout="@layout/fragment_add_update_ticket"
         android:label="Thêm vé xe" />
+
+    <fragment
+        android:id="@+id/nav_add_update_employee"
+        android:name="com.nhom3.quanlyguixe.screens.employees.AddUpdateEmployeeFragment"
+        tools:layout="@layout/fragment_add_update_employee"
+        android:label="Thêm nhân viên" />
 </navigation>

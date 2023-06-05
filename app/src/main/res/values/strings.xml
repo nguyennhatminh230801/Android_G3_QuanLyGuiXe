@@ -29,4 +29,15 @@
     <string name="text_clear_all_info">Xóa dữ liệu</string>
     <string name="text_required">Bắt buộc</string>
     <string name="button_update_ticket">Sửa vé</string>
+    <string name="text_input_employee_name">Họ và tên</string>
+    <string name="text_input_employee_date_of_birth">Ngày sinh</string>
+    <string name="text_input_employee_number_phone">Số điện thoại</string>
+    <string name="text_input_employee_email">Email</string>
+    <string name="text_button_add_nhanvien">Thêm nhân viên</string>
+    <string name="button_upload_image">Tải ảnh lên</string>
+    <string name="text_employee_id_title">Mã nhân viên: %1$d</string>
+    <string name="text_employee_name_title">Tên nhân viên: %1$s</string>
+    <string name="text_employee_date_of_birth">Ngày sinh: %1$s</string>
+    <string name="text_employee_phone_number">SĐT: %1$s</string>
+    <string name="text_employee_email">Email: %1$s</string>
 </resources>
