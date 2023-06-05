@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?><!-- layout_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#97FFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sắp Xếp Khu Vực"
+        android:textSize="26dp"
+        android:textStyle="bold"></TextView>
+
+
+    <TextView
+        android:id="@+id/tvSLTNV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHeader"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Nhân Viên"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHeader"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/tvSLTNV"></Spinner>
+
+
+    <Spinner
+        android:id="@+id/spnNV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHeader"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/tvSLTNV"></Spinner>
+
+    <TextView
+        android:id="@+id/tvSLTKV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSLTNV"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Khu Vực"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+
+    <Spinner
+        android:id="@+id/spnKV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnNV"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/tvSLTNV"></Spinner>
+
+
+    <TableRow
+        android:id="@+id/tbrNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnKV">
+
+        <TextView
+            android:id="@+id/tvNV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Nhân Viên:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tbrDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrNV">
+
+        <TextView
+            android:id="@+id/tvKV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Khu Vực:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtKV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+
+
+    </TableRow>
+
+    <ListView
+        android:id="@+id/lvInfor"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_below="@+id/tbrDate"
+        android:layout_marginTop="21dp"></ListView>
+
+    <TableRow
+        android:id="@+id/tbrBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrDate"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="431dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Xác Nhận"></Button>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Quay Lại"></Button>
+    </TableRow>
+
+
+</RelativeLayout>
