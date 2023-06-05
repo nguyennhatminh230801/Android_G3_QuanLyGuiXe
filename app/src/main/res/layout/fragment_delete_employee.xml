@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sua Nhan Vien"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        ></TextView>
+
+
+    <TableRow
+        android:layout_marginTop="50dp"
+        android:id="@+id/tbrName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Họ Và Tên:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbrDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrName">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tbrBtn"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Ngày Sinh:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbrNumberPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrDate">
+
+        <TextView
+            android:id="@+id/tvNumberPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tbrBtn"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="SĐT:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNumberPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbrEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrNumberPhone">
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tbrBtn"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Email:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbrID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbrEmail">
+
+        <TextView
+            android:id="@+id/tvID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tbrEmail"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:text="Mã NV:"
+            android:textSize="18dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"></com.google.android.material.textfield.TextInputEditText>
+    </TableRow>
+
+
+    <ImageView
+        android:background="#198"
+        android:id="@+id/imgNV"
+        android:layout_width="151dp"
+        android:layout_height="157dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="130dp" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnXacNhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xac Nhan"
+        android:layout_gravity="center"></Button>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnDeleteData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Huy"
+        android:layout_gravity="center"></Button>
+</LinearLayout>
