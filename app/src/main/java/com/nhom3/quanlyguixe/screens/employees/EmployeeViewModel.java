@@ -18,10 +18,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class EmployeeViewModel extends BaseViewModel {
     private final EmployeeRepository employeeRepository;
 
-    private MutableLiveData<List<Employees>> employees = new MutableLiveData<>();
+    private final MutableLiveData<List<Employees>> _employees = new MutableLiveData<>();
 
-    private LiveData<List<Employees>> getListEmployees() {
-        return employees;
+    public LiveData<List<Employees>> getEmployees() {
+        return _employees;
     }
 
     @Inject
@@ -36,7 +36,7 @@ public class EmployeeViewModel extends BaseViewModel {
                         new IResultListener<List<Employees>>() {
                             @Override
                             public void onSuccess(List<Employees> data) {
-                                employees.setValue(data);
+                                _employees.setValue(data);
                             }
 
                             @Override
