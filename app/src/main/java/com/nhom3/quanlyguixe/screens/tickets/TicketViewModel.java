@@ -19,17 +19,8 @@ public class TicketViewModel extends BaseViewModel {
 
     private final MutableLiveData<List<Tickets>> _tickets = new MutableLiveData<>();
 
-    private final MutableLiveData<Boolean> _backToPreviousScreen = new MutableLiveData<>(false);
     public LiveData<List<Tickets>> getTickets() {
         return _tickets;
-    }
-
-    public LiveData<Boolean> getBackToPreviousScreen() {
-        return _backToPreviousScreen;
-    }
-
-    public void resetBackToPreviousScreenState() {
-        _backToPreviousScreen.setValue(false);
     }
 
     private final TicketRepository ticketRepository;

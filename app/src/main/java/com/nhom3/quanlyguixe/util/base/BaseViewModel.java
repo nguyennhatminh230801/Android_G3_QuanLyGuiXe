@@ -1,5 +1,6 @@
 package com.nhom3.quanlyguixe.util.base;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -19,6 +20,16 @@ public class BaseViewModel extends ViewModel {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     protected MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     protected MutableLiveData<String> error = new MutableLiveData<>();
+
+    protected final MutableLiveData<Boolean> _backToPreviousScreen = new MutableLiveData<>(false);
+
+    public LiveData<Boolean> getBackToPreviousScreen() {
+        return _backToPreviousScreen;
+    }
+
+    public void resetBackToPreviousScreenState() {
+        _backToPreviousScreen.setValue(false);
+    }
 
     public MutableLiveData<Boolean> getLoadingState() {
         return isLoading;

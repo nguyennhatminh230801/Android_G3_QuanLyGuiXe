@@ -27,6 +27,8 @@ public class EmployeeViewModel extends BaseViewModel {
     @Inject
     public EmployeeViewModel(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
+
+        getAllEmployees();
     }
 
     public void getAllEmployees() {
@@ -48,25 +50,6 @@ public class EmployeeViewModel extends BaseViewModel {
         );
     }
 
-    public void getDetailEmployeeByID(int employeeID) {
-        registerDisposable(
-                executeTaskWithLoading(
-                        employeeRepository.getEmployeeByID(employeeID),
-                        new IResultListener<Employees>() {
-                            @Override
-                            public void onSuccess(Employees data) {
-
-                            }
-
-                            @Override
-                            public void onError(Throwable throwable) {
-                                error.postValue(throwable.getMessage());
-                            }
-                        }
-                )
-        );
-    }
-
     public void insertEmployee(Employees employees) {
         registerDisposable(
                 executeTaskWithLoading(
@@ -74,7 +57,7 @@ public class EmployeeViewModel extends BaseViewModel {
                         new IResultListener<Long>() {
                             @Override
                             public void onSuccess(Long data) {
-
+                                _backToPreviousScreen.setValue(true);
                             }
 
                             @Override
@@ -93,7 +76,7 @@ public class EmployeeViewModel extends BaseViewModel {
                         new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
-
+                                _backToPreviousScreen.setValue(true);
                             }
 
                             @Override
