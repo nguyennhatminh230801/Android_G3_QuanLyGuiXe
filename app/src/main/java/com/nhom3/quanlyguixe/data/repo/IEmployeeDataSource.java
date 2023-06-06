@@ -14,4 +14,8 @@ public interface IEmployeeDataSource {
         Single<Integer> updateEmployee(Employees employees);
         Single<Integer> deleteEmployee(Employees employees);
     }
+
+    interface Remote {
+
+    }
 }
