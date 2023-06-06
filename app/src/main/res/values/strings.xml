@@ -34,6 +34,7 @@
     <string name="text_input_employee_number_phone">Số điện thoại</string>
     <string name="text_input_employee_email">Email</string>
     <string name="text_button_add_nhanvien">Thêm nhân viên</string>
+    <string name="text_button_update_nhanvien">Sửa nhân viên</string>
     <string name="button_upload_image">Tải ảnh lên</string>
     <string name="text_employee_id_title">Mã nhân viên: %1$d</string>
     <string name="text_employee_name_title">Tên nhân viên: %1$s</string>
