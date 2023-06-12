@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <!-- Phần 1: Chọn thời gian -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,39 +70,113 @@
                 android:textStyle="bold" />
 
             <!-- Đầu mục tổng doanh thu -->
-            <TextView
-                android:id="@+id/textViewTotalRevenue"
+            <!-- Phần 2: Các đầu mục -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tổng doanh thu" />
+                android:orientation="vertical">
 
-            <!-- Đầu mục số lượng xe gửi -->
-            <TextView
-                android:id="@+id/textViewTotalVehicles"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Số lượng xe gửi" />
+                <!-- Đầu mục tổng doanh thu -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-            <!-- Đầu mục số vé ngày đã bán -->
-            <TextView
-                android:id="@+id/textViewDailyTicketsSold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Số vé ngày đã bán" />
+                    android:orientation="horizontal"
+                    android:padding="8dp">
 
-            <!-- Đầu mục số vé tháng đã bán -->
-            <TextView
-                android:id="@+id/textViewMonthlyTicketsSold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Số vé tháng đã bán" />
+                    <TextView
+                        android:id="@+id/textViewTotalRevenueTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng doanh thu: " />
 
-            <!-- Đầu mục số vé năm đã bán -->
-            <TextView
-                android:id="@+id/textViewYearlyTicketsSold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Số vé năm đã bán" />
+                    <TextView
+                        android:id="@+id/textViewTotalRevenue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Đầu mục số lượng xe gửi -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewTotalVehiclesTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượng xe gửi: " />
+
+                    <TextView
+                        android:id="@+id/textViewTotalVehicles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Đầu mục số vé ngày đã bán -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewDailyTicketsSoldTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số vé ngày đã bán: " />
+
+                    <TextView
+                        android:id="@+id/textViewDailyTicketsSold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Đầu mục số vé tháng đã bán -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewMonthlyTicketsSoldTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số vé tháng đã bán: " />
+
+                    <TextView
+                        android:id="@+id/textViewMonthlyTicketsSold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Đầu mục số vé năm đã bán -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewYearlyTicketsSoldTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số vé năm đã bán: " />
+
+                    <TextView
+                        android:id="@+id/textViewYearlyTicketsSold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
