@@ -41,4 +41,11 @@
     <string name="text_employee_date_of_birth">Ngày sinh: %1$s</string>
     <string name="text_employee_phone_number">SĐT: %1$s</string>
     <string name="text_employee_email">Email: %1$s</string>
+    <string name="text_temp_total_slot">Còn trống: %1$s</string>
+    <string name="text_temp_empty_slot">Nhà xe trống!!</string>
+    <string name="text_temp_slot_id">Slot ID: %1$d</string>
+    <string name="text_temp_vehicle_number">Biển số xe: %1$s</string>
+    <string name="text_temp_input_vehicle_number">Biển số xe</string>
+    <string name="text_button_add_vehicle">Thêm xe</string>
+    <string name="text_button_update_vehicle">Sửa xe</string>
 </resources>

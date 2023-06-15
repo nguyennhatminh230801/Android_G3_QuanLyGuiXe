@@ -58,7 +58,11 @@
         android:id="@+id/nav_list_parking_lots"
         android:name="com.nhom3.quanlyguixe.screens.parkinglots.ListParkingLotsFragment"
         android:label="@string/nav_list_parking_lots_title"
-        tools:layout="@layout/fragment_list_parking_lots" />
+        tools:layout="@layout/fragment_list_parking_lots" >
+        <action
+            android:id="@+id/action_nav_list_parking_lots_to_nav_add_update_parking_slot"
+            app:destination="@id/nav_add_update_parking_slot" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_reports_detail"
@@ -77,4 +81,10 @@
         android:name="com.nhom3.quanlyguixe.screens.employees.AddUpdateEmployeeFragment"
         tools:layout="@layout/fragment_add_update_employee"
         android:label="Thêm nhân viên" />
+
+    <fragment
+        android:id="@+id/nav_add_update_parking_slot"
+        android:name="com.nhom3.quanlyguixe.screens.parkinglots.ListParkingLotsFragment"
+        tools:layout="@layout/fragment_add_update_parking_lots"
+        android:label="Thêm xe" />
 </navigation>
