@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/nav_add_update_parking_slot"
-        android:name="com.nhom3.quanlyguixe.screens.parkinglots.ListParkingLotsFragment"
+        android:name="com.nhom3.quanlyguixe.screens.parkinglots.AddUpdateParkingLotsFragment"
         tools:layout="@layout/fragment_add_update_parking_lots"
-        android:label="Thêm xe" />
+        android:label="Thêm nhà xe" />
 </navigation>
