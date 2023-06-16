@@ -5,33 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner_parking_lot"
-        android:layout_width="@dimen/dp_200"
-        android:layout_height="@dimen/dp_60"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_total_slot"
-        android:layout_width="@dimen/dp_200"
-        android:layout_height="@dimen/dp_60"
-        android:layout_marginEnd="@dimen/dp_20"
-        android:gravity="center_vertical"
-        android:text="@string/text_temp_total_slot"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/spinner_parking_lot"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlCompat" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_parking_lots"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_parking_lot_layout" />
 
     <TextView
         android:id="@+id/text_empty_tickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_temp_empty_slot"
+        android:text="@string/text_temp_empty_parking_lot"
         android:textSize="@dimen/sp_18"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,35 +25,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_parking_slot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/spinner_parking_lot"
-        tools:itemCount="4"
-        tools:listitem="@layout/item_parking_slot_layout">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/button_add_vehicle"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_add_parking_lot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_60"
-        android:text="@string/text_button_add_vehicle"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:contentDescription="@string/text_content_description_add_parking_lot"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_edit_vehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_60"
-        android:text="@string/text_button_update_vehicle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="525dp" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
