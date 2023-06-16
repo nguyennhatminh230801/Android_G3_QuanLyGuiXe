@@ -43,7 +43,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_add_slot"
+        android:id="@+id/button_add_parking_lot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_10"
@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="@id/text_input_parking_slot_max" />
 
     <Button
-        android:id="@+id/button_update_ticket"
+        android:id="@+id/button_update_parking_lot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp_10"
