@@ -47,8 +47,8 @@
     <string name="text_button_update_parking_lot">Sửa nhà xe</string>
     <string name="text_button_add_parking_lot">Thêm nhà xe</string>
     <string name="text_temp_input_parking_lot_name">Tên nhà xe</string>
-    <string name="text_temp_parking_slot_available">Trống: %1$d</string>
-    <string name="text_temp_parking_slot_max">Tối đa: %1$d</string>
+    <string name="text_temp_parking_slot_available">Trống: %1$s</string>
+    <string name="text_temp_parking_slot_max">Tối đa: %1$s</string>
     <string name="text_content_description_add_parking_lot">Thêm nhà xe</string>
     <string name="text_temp_input_parking_slot_max">Số vị trí tối đa</string>
 </resources>

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.nhom3.quanlyguixe.data.repo.local.employee.EmployeeDao;
+import com.nhom3.quanlyguixe.data.repo.local.parkinglot.ParkingLotDao;
 import com.nhom3.quanlyguixe.data.repo.local.ticket.TicketDao;
 import com.nhom3.quanlyguixe.util.QuanLyGuiXeDatabase;
 
@@ -41,4 +42,8 @@ public class DatabaseModule {
     public TicketDao provideTicketDao(QuanLyGuiXeDatabase database) {
         return database.ticketDao();
     }
+
+    @Provides
+    @Singleton
+    public ParkingLotDao provideParkingLotDao(QuanLyGuiXeDatabase database) {return database.parkingLotDao();}
 }

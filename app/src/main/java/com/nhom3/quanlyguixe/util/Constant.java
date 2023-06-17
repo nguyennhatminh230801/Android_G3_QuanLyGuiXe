@@ -9,7 +9,7 @@ public class Constant {
     public static final SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat(DD_MM_YYYY);
 
     public static final String KEY_BUNDLE_TICKET = "tickets";
-
+    public static final String KEY_BUNDLE_PARKING_LOT = "parkinglots";
     public static final String KEY_BUNDLE_EMPLOYEE = "employee";
     public static final String KEY_BUNDLE_IS_UPDATE = "isUpdate";
 }
