@@ -73,9 +73,20 @@ public class CheckinVehicleFragment
     protected void addEvent() {
         datePickerDialog.setOnDateSetListener(this);
 
-        viewBinding.filledExposedDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        viewBinding.filledExposedDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object item = parent.getItemAtPosition(position);
+                if (item instanceof Tickets) {
+                    selectTicket = (Tickets) item;
+                    // do something with the studentInfo object
+                }
+            }
+        });
+        /*viewBinding.filledExposedDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 Tickets tickets = (Tickets) adapterView.getItemAtPosition(i);
                 selectTicket = tickets;
             }
@@ -84,7 +95,7 @@ public class CheckinVehicleFragment
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
         viewBinding.textInputDateCheckIn.setOnClickListener(v -> {
             showDatePickerDialog();
