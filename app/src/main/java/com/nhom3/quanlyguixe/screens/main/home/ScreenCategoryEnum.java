@@ -5,5 +5,6 @@ public enum ScreenCategoryEnum {
     PARKING_LOTS_SCREEN,
     REPORT_SCREEN,
     SHIFT_MANAGER_SCREEN,
-    TICKET_SCREEN
+    TICKET_SCREEN,
+    CHECK_IN_OUT_VEHICLE,
 }

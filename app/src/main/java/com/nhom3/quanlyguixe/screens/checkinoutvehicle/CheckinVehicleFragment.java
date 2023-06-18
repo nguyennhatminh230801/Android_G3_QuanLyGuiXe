@@ -1,0 +1,192 @@
+package com.nhom3.quanlyguixe.screens.checkinoutvehicle;
+
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+
+import com.nhom3.quanlyguixe.data.model.Tickets;
+import com.nhom3.quanlyguixe.data.model.Vehicle;
+import com.nhom3.quanlyguixe.databinding.FragmentCheckInVehicleBinding;
+import com.nhom3.quanlyguixe.util.Constant;
+import com.nhom3.quanlyguixe.util.Validator;
+import com.nhom3.quanlyguixe.util.base.BaseFragment;
+import com.nhom3.quanlyguixe.util.dialog.AlertDialogFactory;
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+public class CheckinVehicleFragment
+        extends BaseFragment<FragmentCheckInVehicleBinding>
+        implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+    @Inject
+    NavController navController;
+
+    CheckinCheckoutVehicleViewModel viewModel;
+
+    private DatePickerDialog datePickerDialog;
+
+    private TimePickerDialog timePickerDialog;
+
+    private Date selectedDate = Calendar.getInstance().getTime();
+    private Tickets selectTicket;
+
+
+    @Override
+    public FragmentCheckInVehicleBinding inflateViewBinding(LayoutInflater inflater) {
+        return FragmentCheckInVehicleBinding.inflate(inflater);
+    }
+
+    @Override
+    protected void initScreenData() {
+        viewModel = new ViewModelProvider(this).get(CheckinCheckoutVehicleViewModel.class);
+        datePickerDialog = new DatePickerDialog(getContext());
+        timePickerDialog = new TimePickerDialog(getContext(), this, 0, 0, false);
+
+        String date = Constant.YEAR_FORMAT.format(selectedDate);
+        String time = Constant.TIME_FORMAT.format(selectedDate);
+
+        viewBinding.textInputDateCheckIn.getEditText().setText(date);
+        viewBinding.textInputTimeCheckIn.getEditText().setText(time);
+
+        viewModel.getAllTickets();
+    }
+
+    @Override
+    protected void addEvent() {
+        datePickerDialog.setOnDateSetListener(this);
+
+        viewBinding.filledExposedDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Tickets tickets = (Tickets) adapterView.getItemAtPosition(i);
+                selectTicket = tickets;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        viewBinding.textInputDateCheckIn.setOnClickListener(v -> {
+            showDatePickerDialog();
+        });
+
+        viewBinding.textInputDateCheckIn.getEditText().setOnClickListener(v -> {
+            showDatePickerDialog();
+        });
+
+        viewBinding.textInputTimeCheckIn.getEditText().setOnClickListener(v -> {
+            showTimePickerDialog();
+        });
+
+        viewBinding.buttonClearAllInfo.setOnClickListener(view -> {
+            AlertDialogFactory.createClearAllInfoDialog(getContext(), () -> {
+                selectedDate = Calendar.getInstance().getTime();
+                viewBinding.textInputVehicleNumber.getEditText().setText("");
+                viewBinding.textInputDateCheckIn.getEditText().setText(Constant.YEAR_FORMAT.format(selectedDate));
+                viewBinding.textInputTimeCheckIn.getEditText().setText(Constant.TIME_FORMAT.format(selectedDate));
+                viewBinding.filledExposedDropdown.setSelection(0);
+                viewBinding.textInputVehicleNumber.getEditText().requestFocus();
+
+                Toast.makeText(getContext(), "Xóa dữ liệu thành công", Toast.LENGTH_SHORT).show();
+            }).show();
+        });
+
+        viewBinding.buttonAddVehicle.setOnClickListener(view -> {
+            List<EditText> editTexts = Arrays.asList(
+                    viewBinding.textInputVehicleNumber.getEditText()
+            );
+
+            if(editTexts.stream().anyMatch(Validator::isEmptyEditText)
+                    && viewBinding.filledExposedDropdown.getText().toString().isEmpty()) {
+                Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            } else {
+                Vehicle vehicle = new Vehicle();
+                vehicle.setVehicleControlID(0);
+                vehicle.setVehicleNumber(viewBinding.textInputVehicleNumber.getEditText().getText().toString());
+                vehicle.setCustomerName(viewBinding.textInputCustomerName.getEditText().getText().toString());
+                vehicle.setTicket(selectTicket);
+                vehicle.setDateTimeIn(selectedDate);
+
+                viewModel.insertVehicle(vehicle);
+            }
+        });
+    }
+
+
+    @Override
+    protected void bindToViewModel() {
+        viewModel.getTickets().observe(getViewLifecycleOwner(), tickets -> {
+            ArrayAdapter<Tickets> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, tickets);
+            viewBinding.filledExposedDropdown.setAdapter(adapter);
+        });
+
+        viewModel.getBackToPreviousScreen().observe(getViewLifecycleOwner(), backToPreviousScreen -> {
+            if(backToPreviousScreen) {
+                Toast.makeText(getContext(), "Check-in thành công", Toast.LENGTH_SHORT).show();
+                navController.navigateUp();
+            }
+        });
+    }
+
+    private void showDatePickerDialog() {
+        datePickerDialog.updateDate(selectedDate.getYear() + Constant.DEFAULT_START_YEAR, selectedDate.getMonth(), selectedDate.getDate());
+        datePickerDialog.show();
+    }
+
+    private void showTimePickerDialog() {
+        timePickerDialog.updateTime(selectedDate.getHours(), selectedDate.getMinutes());
+        timePickerDialog.show();
+    }
+
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        selectedDate.setYear(year - Constant.DEFAULT_START_YEAR);
+        selectedDate.setMonth(month);
+        selectedDate.setDate(dayOfMonth);
+        String date = Constant.YEAR_FORMAT.format(selectedDate);
+        viewBinding.textInputDateCheckIn.getEditText().setText(date);
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+        selectedDate.setHours(hourOfDay);
+        selectedDate.setMinutes(minutes);
+        String time = Constant.TIME_FORMAT.format(selectedDate);
+        viewBinding.textInputTimeCheckIn.getEditText().setText(time);
+    }
+
+    @Override
+    public void onStop() {
+        viewModel.resetBackToPreviousScreenState();
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        datePickerDialog.dismiss();
+        timePickerDialog.dismiss();
+        selectedDate = null;
+        super.onDestroy();
+    }
+}

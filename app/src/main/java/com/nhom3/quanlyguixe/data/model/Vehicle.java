@@ -3,6 +3,8 @@ package com.nhom3.quanlyguixe.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,10 +15,10 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class VehicleControl implements Parcelable {
+public class Vehicle implements Parcelable {
     @SerializedName("control_id")
     @Expose
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int vehicleControlID;
 
     @SerializedName("vehicle_number")
@@ -35,37 +37,19 @@ public class VehicleControl implements Parcelable {
     @Expose
     private int employeeID;
 
-    @SerializedName("ticket_id")
+    @SerializedName("ticket")
     @Expose
-    private int ticketID;
+    private Tickets ticket;
 
     @SerializedName("area_id")
     @Expose
     private int areaID;
 
-    @SerializedName("customer_id")
+    @SerializedName("customer_name")
     @Expose
-    private int customerID;
+    private String customerName;
 
-    @SerializedName("photo")
-    @Expose
-    private String vehicleImageURL;
-
-    public VehicleControl() {
-    }
-
-    public VehicleControl(int vehicleControlID, String vehicleNumber, Date dateTimeIn,
-                          Date dateTimeOut, int employeeID, int ticketID, int areaID,
-                          int customerID, String vehicleImageURL) {
-        this.vehicleControlID = vehicleControlID;
-        this.vehicleNumber = vehicleNumber;
-        this.dateTimeIn = dateTimeIn;
-        this.dateTimeOut = dateTimeOut;
-        this.employeeID = employeeID;
-        this.ticketID = ticketID;
-        this.areaID = areaID;
-        this.customerID = customerID;
-        this.vehicleImageURL = vehicleImageURL;
+    public Vehicle() {
     }
 
     public int getVehicleControlID() {
@@ -108,12 +92,12 @@ public class VehicleControl implements Parcelable {
         this.employeeID = employeeID;
     }
 
-    public int getTicketID() {
-        return ticketID;
+    public Tickets getTicket() {
+        return ticket;
     }
 
-    public void setTicketID(int ticketID) {
-        this.ticketID = ticketID;
+    public void setTicket(Tickets ticket) {
+        this.ticket = ticket;
     }
 
     public int getAreaID() {
@@ -124,47 +108,49 @@ public class VehicleControl implements Parcelable {
         this.areaID = areaID;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    public String getVehicleImageURL() {
-        return vehicleImageURL;
-    }
-
-    public void setVehicleImageURL(String vehicleImageURL) {
-        this.vehicleImageURL = vehicleImageURL;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof VehicleControl)) return false;
-        VehicleControl that = (VehicleControl) o;
-        return getVehicleControlID() == that.getVehicleControlID() && getEmployeeID() == that.getEmployeeID() && getTicketID() == that.getTicketID() && getAreaID() == that.getAreaID() && getCustomerID() == that.getCustomerID() && Objects.equals(getVehicleNumber(), that.getVehicleNumber()) && Objects.equals(getDateTimeIn(), that.getDateTimeIn()) && Objects.equals(getDateTimeOut(), that.getDateTimeOut()) && Objects.equals(getVehicleImageURL(), that.getVehicleImageURL());
+        if (!(o instanceof Vehicle)) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return getVehicleControlID() == vehicle.getVehicleControlID() && getEmployeeID() == vehicle.getEmployeeID() && getAreaID() == vehicle.getAreaID() && Objects.equals(getVehicleNumber(), vehicle.getVehicleNumber()) && Objects.equals(getDateTimeIn(), vehicle.getDateTimeIn()) && Objects.equals(getDateTimeOut(), vehicle.getDateTimeOut()) && Objects.equals(getTicket(), vehicle.getTicket()) && Objects.equals(getCustomerName(), vehicle.getCustomerName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getVehicleControlID(), getVehicleNumber(), getDateTimeIn(), getDateTimeOut(), getEmployeeID(), getTicketID(), getAreaID(), getCustomerID(), getVehicleImageURL());
+        return Objects.hash(getVehicleControlID(), getVehicleNumber(), getDateTimeIn(), getDateTimeOut(), getEmployeeID(), getTicket(), getAreaID(), getCustomerName());
+    }
+
+    public Vehicle(int vehicleControlID, String vehicleNumber, Date dateTimeIn, Date dateTimeOut, int employeeID, Tickets ticket, int areaID, String customerName) {
+        this.vehicleControlID = vehicleControlID;
+        this.vehicleNumber = vehicleNumber;
+        this.dateTimeIn = dateTimeIn;
+        this.dateTimeOut = dateTimeOut;
+        this.employeeID = employeeID;
+        this.ticket = ticket;
+        this.areaID = areaID;
+        this.customerName = customerName;
     }
 
     @Override
     public String toString() {
-        return "VehicleControl{" +
+        return "Vehicle{" +
                 "vehicleControlID=" + vehicleControlID +
                 ", vehicleNumber='" + vehicleNumber + '\'' +
                 ", dateTimeIn=" + dateTimeIn +
                 ", dateTimeOut=" + dateTimeOut +
                 ", employeeID=" + employeeID +
-                ", ticketID=" + ticketID +
+                ", ticket=" + ticket +
                 ", areaID=" + areaID +
-                ", customerID=" + customerID +
-                ", vehicleImageURL='" + vehicleImageURL + '\'' +
+                ", customerName='" + customerName + '\'' +
                 '}';
     }
 
@@ -181,10 +167,9 @@ public class VehicleControl implements Parcelable {
         dest.writeLong(this.dateTimeIn != null ? this.dateTimeIn.getTime() : -1);
         dest.writeLong(this.dateTimeOut != null ? this.dateTimeOut.getTime() : -1);
         dest.writeInt(this.employeeID);
-        dest.writeInt(this.ticketID);
+        dest.writeParcelable(this.ticket, flags);
         dest.writeInt(this.areaID);
-        dest.writeInt(this.customerID);
-        dest.writeString(this.vehicleImageURL);
+        dest.writeString(this.customerName);
     }
 
     public void readFromParcel(Parcel source) {
@@ -195,13 +180,12 @@ public class VehicleControl implements Parcelable {
         long tmpDateTimeOut = source.readLong();
         this.dateTimeOut = tmpDateTimeOut == -1 ? null : new Date(tmpDateTimeOut);
         this.employeeID = source.readInt();
-        this.ticketID = source.readInt();
+        this.ticket = source.readParcelable(Tickets.class.getClassLoader());
         this.areaID = source.readInt();
-        this.customerID = source.readInt();
-        this.vehicleImageURL = source.readString();
+        this.customerName = source.readString();
     }
 
-    protected VehicleControl(Parcel in) {
+    protected Vehicle(Parcel in) {
         this.vehicleControlID = in.readInt();
         this.vehicleNumber = in.readString();
         long tmpDateTimeIn = in.readLong();
@@ -209,21 +193,35 @@ public class VehicleControl implements Parcelable {
         long tmpDateTimeOut = in.readLong();
         this.dateTimeOut = tmpDateTimeOut == -1 ? null : new Date(tmpDateTimeOut);
         this.employeeID = in.readInt();
-        this.ticketID = in.readInt();
+        this.ticket = in.readParcelable(Tickets.class.getClassLoader());
         this.areaID = in.readInt();
-        this.customerID = in.readInt();
-        this.vehicleImageURL = in.readString();
+        this.customerName = in.readString();
     }
 
-    public static final Parcelable.Creator<VehicleControl> CREATOR = new Parcelable.Creator<VehicleControl>() {
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
         @Override
-        public VehicleControl createFromParcel(Parcel source) {
-            return new VehicleControl(source);
+        public Vehicle createFromParcel(Parcel source) {
+            return new Vehicle(source);
         }
 
         @Override
-        public VehicleControl[] newArray(int size) {
-            return new VehicleControl[size];
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
         }
     };
+
+    public static DiffUtil.ItemCallback<Vehicle> getDiffCallback() {
+        return new DiffUtil.ItemCallback<Vehicle>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Vehicle oldItem, @NonNull Vehicle newItem) {
+                return oldItem.getVehicleControlID() == newItem.getVehicleControlID();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Vehicle oldItem, @NonNull Vehicle newItem) {
+                return oldItem.equals(newItem);
+            }
+        };
+    }
+
 }

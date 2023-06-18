@@ -107,6 +107,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 case R.id.nav_list_shift_manager:
                     navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
                     break;
+                case R.id.nav_checkin_checkout_vehicle:
+                    navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
+                    break;
                 default:
                     break;
             }
