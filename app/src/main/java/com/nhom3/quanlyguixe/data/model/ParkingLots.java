@@ -17,7 +17,7 @@ import java.util.Objects;
 public class ParkingLots implements Parcelable {
     @SerializedName("parking_lot_id")
     @Expose
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int parkingLotId;
 
     @SerializedName("parking_lot_name")

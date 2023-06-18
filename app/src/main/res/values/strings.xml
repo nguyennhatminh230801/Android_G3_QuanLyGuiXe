@@ -51,4 +51,12 @@
     <string name="text_temp_parking_slot_max">Tối đa: %1$d xe</string>
     <string name="text_content_description_add_parking_lot">Thêm nhà xe</string>
     <string name="text_temp_input_parking_slot_max">Số vị trí tối đa</string>
+    <string name="nav_check_in_out_vehicle_title">Xe ra/vào</string>
+    <string name="nav_check_in_vehicle_title">Xe vào</string>
+    <string name="nav_check_out_vehicle_title">Xe ra</string>
+    <string name="text_checkin_vehicle">Xác nhận xe vào</string>
+    <string name="text_vehicle_number">Biển số xe: %1$s</string>
+    <string name="text_vehicle_owner">Khách hàng: %1$s</string>
+    <string name="text_vehicle_ticket_type">Loại vé: %1$s</string>
+    <string name="text_vehicle_time_in">Thời gian vào: %1$s</string>
 </resources>

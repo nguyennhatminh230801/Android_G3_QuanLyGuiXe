@@ -105,12 +105,7 @@ public class Tickets implements Parcelable {
 
     @Override
     public String toString() {
-        return "Tickets{" +
-                "ticketID=" + ticketID +
-                ", ticketType='" + ticketType + '\'' +
-                ", price=" + price +
-                ", expirationDate=" + expirationDate +
-                '}';
+        return this.ticketType;
     }
 
 
