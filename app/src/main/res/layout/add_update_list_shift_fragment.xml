@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spinner_input_khu_vuc"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/dp_10"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/spinner_input_nv"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@id/spinner_input_khu_vuc"
+        app:layout_constraintStart_toStartOf="@id/spinner_input_khu_vuc"
+        app:layout_constraintTop_toBottomOf="@id/spinner_input_khu_vuc">
+
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/spinner_input_ca"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@id/spinner_input_nv"
+        app:layout_constraintStart_toStartOf="@id/spinner_input_nv"
+        app:layout_constraintTop_toBottomOf="@id/spinner_input_nv">
+
+    </Spinner>
+    <TextView
+        android:background="@drawable/background_spinner"
+        android:id="@+id/text_input_ticket_expiration_date"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:textSize="20sp"
+        android:text="Chọn ngày"
+        android:paddingVertical="@dimen/dp_20"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@id/spinner_input_ca"
+        app:layout_constraintStart_toStartOf="@id/spinner_input_ca"
+        app:layout_constraintTop_toBottomOf="@id/spinner_input_ca">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/button_add_ticket"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Them Nhan Vien"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/text_input_ticket_expiration_date"
+        app:layout_constraintStart_toStartOf="@id/text_input_ticket_expiration_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
