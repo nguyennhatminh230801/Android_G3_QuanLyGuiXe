@@ -24,6 +24,10 @@ public class ParkingLots implements Parcelable {
     @Expose
     private String parkingLotName;
 
+    @SerializedName("parking_slot_remaining")
+    @Expose
+    private Long parkingSlotRemaining;
+
     @SerializedName("parking_slot_max")
     @Expose
     private Long parkingSlotMax;
@@ -47,9 +51,10 @@ public class ParkingLots implements Parcelable {
         };
     }
 
-    public ParkingLots(int parkingLotId, String parkingLotName, Long parkingSlotMax) {
+    public ParkingLots(int parkingLotId, String parkingLotName, Long parkingSlotRemaining, Long parkingSlotMax) {
         this.parkingLotId = parkingLotId;
         this.parkingLotName = parkingLotName;
+        this.parkingSlotRemaining = parkingSlotRemaining;
         this.parkingSlotMax = parkingSlotMax;
     }
 
@@ -77,17 +82,12 @@ public class ParkingLots implements Parcelable {
         this.parkingSlotMax = parkingSlotMax;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ParkingLots)) return false;
-        ParkingLots parkinglots = (ParkingLots) o;
-        return getParkingLotId() == parkinglots.getParkingLotId() && Objects.equals(getParkingLotName(), parkinglots.getParkingLotName()) && Double.compare(parkinglots.getParkingSlotMax(), parkingSlotMax) == 0;
+    public Long getParkingSlotRemaining() {
+        return parkingSlotRemaining;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getParkingLotId(), getParkingLotName());
+    public void setParkingSlotRemaining(Long parkingSlotRemaining) {
+        this.parkingSlotRemaining = parkingSlotRemaining;
     }
 
     @Override
@@ -95,10 +95,23 @@ public class ParkingLots implements Parcelable {
         return "ParkingLots{" +
                 "parkingLotId=" + parkingLotId +
                 ", parkingLotName='" + parkingLotName + '\'' +
-                ", parkingSlotMax='" + parkingSlotMax + '\'' +
+                ", parkingSlotRemaining=" + parkingSlotRemaining +
+                ", parkingSlotMax=" + parkingSlotMax +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ParkingLots)) return false;
+        ParkingLots that = (ParkingLots) o;
+        return getParkingLotId() == that.getParkingLotId() && Objects.equals(getParkingLotName(), that.getParkingLotName()) && Objects.equals(getParkingSlotRemaining(), that.getParkingSlotRemaining()) && Objects.equals(getParkingSlotMax(), that.getParkingSlotMax());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getParkingLotId(), getParkingLotName(), getParkingSlotRemaining(), getParkingSlotMax());
+    }
 
 
     @Override
@@ -110,22 +123,25 @@ public class ParkingLots implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.parkingLotId);
         dest.writeString(this.parkingLotName);
-        dest.writeDouble(this.parkingSlotMax);
+        dest.writeValue(this.parkingSlotRemaining);
+        dest.writeValue(this.parkingSlotMax);
     }
 
     public void readFromParcel(Parcel source) {
         this.parkingLotId = source.readInt();
         this.parkingLotName = source.readString();
-        this.parkingSlotMax = source.readLong();
+        this.parkingSlotRemaining = (Long) source.readValue(Long.class.getClassLoader());
+        this.parkingSlotMax = (Long) source.readValue(Long.class.getClassLoader());
     }
 
     protected ParkingLots(Parcel in) {
         this.parkingLotId = in.readInt();
         this.parkingLotName = in.readString();
-        this.parkingSlotMax = in.readLong();
+        this.parkingSlotRemaining = (Long) in.readValue(Long.class.getClassLoader());
+        this.parkingSlotMax = (Long) in.readValue(Long.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ParkingLots> CREATOR = new Parcelable.Creator<ParkingLots>() {
+    public static final Creator<ParkingLots> CREATOR = new Creator<ParkingLots>() {
         @Override
         public ParkingLots createFromParcel(Parcel source) {
             return new ParkingLots(source);
