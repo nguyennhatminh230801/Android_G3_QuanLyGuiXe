@@ -4,181 +4,261 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp"
-    android:layout_marginTop="30dp"
+    android:padding="@dimen/dp_12"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/text_view_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_report"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_select_time"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/text_view_report">
 
-
-        <!-- Phần 1: Chọn thời gian -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_start_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginVertical="@dimen/dp_4">
 
             <TextView
-                android:id="@+id/textReportTitle"
-                android:layout_width="match_parent"
+                android:id="@+id/text_view_title_day"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Báo cáo theo"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Ngày bắt đầu:  "
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Ô chọn ngày -->
-            <EditText
-                android:id="@+id/editTextDay"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_start_day"
+                android:layout_width="0dp"
+                android:clickable="true"
                 android:layout_height="wrap_content"
-                android:hint="Ngày" />
+                app:helperTextEnabled="true"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_title_day"
+                app:layout_constraintTop_toTopOf="parent"
+                android:hint="Tính từ">
 
-            <!-- Ô chọn tháng -->
-            <EditText
-                android:id="@+id/editTextMonth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tháng" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_height="match_parent" />
 
-            <!-- Ô chọn năm -->
-            <EditText
-                android:id="@+id/editTextYear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Năm" />
-        </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Phần 2: Các đầu mục -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_endate"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_4">
 
             <TextView
-                android:id="@+id/textReportDetail"
-                android:layout_width="match_parent"
+                android:id="@+id/text_view_title_month"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doanh thu"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Ngày kết thúc: "
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Đầu mục tổng doanh thu -->
-            <!-- Phần 2: Các đầu mục -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_end_day"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:helperTextEnabled="true"
+                android:clickable="true"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_title_month"
+                app:layout_constraintTop_toTopOf="parent"
+                android:hint="Đến ngày">
 
-                <!-- Đầu mục tổng doanh thu -->
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_height="match_parent" />
 
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/textViewTotalRevenueTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tổng doanh thu: " />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginVertical="@dimen/dp_4">
 
-                    <TextView
-                        android:id="@+id/textViewTotalRevenue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+            <TextView
+                android:id="@+id/text_view_title_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/year"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- Đầu mục số lượng xe gửi -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textViewTotalVehiclesTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số lượng xe gửi: " />
-
-                    <TextView
-                        android:id="@+id/textViewTotalVehicles"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <!-- Đầu mục số vé ngày đã bán -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textViewDailyTicketsSoldTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số vé ngày đã bán: " />
-
-                    <TextView
-                        android:id="@+id/textViewDailyTicketsSold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <!-- Đầu mục số vé tháng đã bán -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textViewMonthlyTicketsSoldTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số vé tháng đã bán: " />
-
-                    <TextView
-                        android:id="@+id/textViewMonthlyTicketsSold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <!-- Đầu mục số vé năm đã bán -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textViewYearlyTicketsSoldTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số vé năm đã bán: " />
-
-                    <TextView
-                        android:id="@+id/textViewYearlyTicketsSold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
+            <TextView
+                android:id="@+id/text_view_selected_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_text_selected_time_report"
+                android:paddingHorizontal="@dimen/dp_8"
+                android:paddingVertical="@dimen/dp_4"
+                android:text="@string/selected_year"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_title_year"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/layout_select_time">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/text_view_revenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titile_revenue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_value_revenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:text="0"
+                app:layout_constraintStart_toEndOf="@id/text_view_revenue"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2,500,500" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_vehicle_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_vehicle_amount"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_value_vehicle_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_vehicle_amount"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="12" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_day_ticket_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số vé đã bán"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_value_day_ticket_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:text="0"
+                app:layout_constraintStart_toEndOf="@id/text_view_day_ticket_sold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="100" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_month_ticket_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_month_ticket_sold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_month_ticket_sold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="50" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_year_ticket_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/year_ticket_sold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_value_year_ticket_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                app:layout_constraintStart_toEndOf="@id/text_view_year_ticket_sold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
