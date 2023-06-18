@@ -24,22 +24,22 @@ public class ParkingLotRepository implements IParkingLotDataSource.Local {
 
     @Override
     public Single<ParkingLots> getParkingLotByID(int parkingLotID) {
-        return null;
+        return local.getParkingLotByID(parkingLotID);
     }
 
     @Override
     public Single<Long> insertParkingLot(ParkingLots parkingLots) {
-        return null;
+        return local.insertParkingLot(parkingLots);
     }
 
     @Override
     public Single<Integer> updateParkingLot(ParkingLots parkingLots) {
-        return null;
+        return local.updateParkingLot(parkingLots);
     }
 
     @Override
     public Single<Integer> deleteParkingLot(ParkingLots parkingLots) {
-        return null;
+        return local.deleteParkingLot(parkingLots);
     }
 
 }

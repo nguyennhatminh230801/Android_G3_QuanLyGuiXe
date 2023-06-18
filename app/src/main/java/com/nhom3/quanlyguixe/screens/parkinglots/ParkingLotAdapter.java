@@ -48,8 +48,9 @@ public class ParkingLotAdapter extends BaseRecyclerViewAdapter<ParkingLots, Item
 
             viewBinding.textParkingLotName.setText(resources.getString(R.string.text_temp_parking_lot_name, item.getParkingLotName()));
 
-            String displaySlotMax = NumberFormat.getCurrencyInstance().format(item.getParkingSlotMax());
-            viewBinding.textParkingSlotMax.setText(resources.getString(R.string.text_temp_parking_slot_max, displaySlotMax));
+            viewBinding.textParkingSlotAvailable.setText(resources.getString(R.string.text_temp_parking_slot_available, item.getParkingSlotRemaining()));
+
+            viewBinding.textParkingSlotMax.setText(resources.getString(R.string.text_temp_parking_slot_max, item.getParkingSlotMax()));
 
             viewBinding.buttonUpdateParkingLot.setOnClickListener(view -> {
                 listener.onUpdate(item);

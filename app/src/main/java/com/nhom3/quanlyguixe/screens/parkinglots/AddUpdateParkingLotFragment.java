@@ -93,12 +93,14 @@ public class AddUpdateParkingLotFragment
             if (editTexts.stream().anyMatch(Validator::isEmptyEditText)) {
                 Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             } else {
-                ParkingLots parkinglots = new ParkingLots();
-                parkinglots.setParkingLotId(0);
-                parkinglots.setParkingLotName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
-                parkinglots.setParkingSlotMax(Long.valueOf(viewBinding.textInputParkingSlotMax.getEditText().getText().toString()));
+                ParkingLots newParkingLots = new ParkingLots();
+                Long amount = Long.valueOf(viewBinding.textInputParkingSlotMax.getEditText().getText().toString());
+                newParkingLots.setParkingLotId(0);
+                newParkingLots.setParkingLotName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
+                newParkingLots.setParkingSlotRemaining(amount);
+                newParkingLots.setParkingSlotMax(amount);
 
-                parkingLotViewModel.insertParkingLot(parkinglots);
+                parkingLotViewModel.insertParkingLot(newParkingLots);
             }
         });
 

@@ -23,6 +23,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ListParkingLotsFragment extends BaseFragment<FragmentListParkingLotsBinding> {
     private ParkingLotViewModel parkingLotViewModel;
 
@@ -104,6 +107,8 @@ public class ListParkingLotsFragment extends BaseFragment<FragmentListParkingLot
 
     @Override
     protected void bindToViewModel() {
-
+        parkingLotViewModel.getParkingLots().observe(getViewLifecycleOwner(), parkingLots -> {
+            parkingLotAdapter.submitList(parkingLots);
+        });
     }
 }
