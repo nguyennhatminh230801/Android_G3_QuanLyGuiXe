@@ -19,7 +19,8 @@ public class HomeViewModel extends ViewModel {
             new ScreenEntry(R.drawable.ic_parking_lots, R.string.nav_list_parking_lots_title, ScreenCategoryEnum.PARKING_LOTS_SCREEN),
             new ScreenEntry(R.drawable.ic_report, R.string.nav_reports_detail_title, ScreenCategoryEnum.REPORT_SCREEN),
             new ScreenEntry(R.drawable.ic_shift_manager, R.string.nav_list_shift_manager_title, ScreenCategoryEnum.SHIFT_MANAGER_SCREEN),
-            new ScreenEntry(R.drawable.ic_ticket, R.string.nav_list_ticket_title, ScreenCategoryEnum.TICKET_SCREEN)
+            new ScreenEntry(R.drawable.ic_ticket, R.string.nav_list_ticket_title, ScreenCategoryEnum.TICKET_SCREEN),
+            new ScreenEntry(R.drawable.ic_parking_lots, R.string.nav_check_in_out_vehicle_title, ScreenCategoryEnum.CHECK_IN_OUT_VEHICLE)
     );
 
     private final MutableLiveData<List<ScreenEntry>> screenEntries = new MutableLiveData<>();

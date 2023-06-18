@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_reports_detail"
             app:destination="@id/nav_reports_detail" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_checkin_checkout_vehicle"
+            app:destination="@id/nav_checkin_checkout_vehicle" />
     </fragment>
 
     <fragment
@@ -87,4 +90,29 @@
         android:name="com.nhom3.quanlyguixe.screens.parkinglots.AddUpdateParkingLotFragment"
         tools:layout="@layout/fragment_add_update_parking_lots"
         android:label="Thêm nhà xe" />
+
+    <fragment
+        android:id="@+id/nav_checkin_checkout_vehicle"
+        tools:layout="@layout/fragment_check_in_out_vehicle"
+        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckinCheckOutVehicleFragment"
+        android:label="@string/nav_check_in_out_vehicle_title" >
+        <action
+            android:id="@+id/action_nav_checkin_checkout_vehicle_to_nav_checkin_vehicle"
+            app:destination="@id/nav_checkin_vehicle" />
+        <action
+            android:id="@+id/action_nav_checkin_checkout_vehicle_to_nav_checkout_vehicle"
+            app:destination="@id/nav_checkout_vehicle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_checkin_vehicle"
+        tools:layout="@layout/fragment_check_in_vehicle"
+        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckinVehicleFragment"
+        android:label="@string/nav_check_in_vehicle_title" />
+
+    <fragment
+        android:id="@+id/nav_checkout_vehicle"
+        tools:layout="@layout/fragment_check_out_vehicle"
+        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckoutVehicleFragment"
+        android:label="@string/nav_check_out_vehicle_title" />
 </navigation>

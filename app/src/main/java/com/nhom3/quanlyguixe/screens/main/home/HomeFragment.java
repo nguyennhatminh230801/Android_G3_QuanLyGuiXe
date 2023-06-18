@@ -55,6 +55,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
                 case SHIFT_MANAGER_SCREEN:
                     navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
                     break;
+                case CHECK_IN_OUT_VEHICLE:
+                    navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
+                    break;
                 default:
                     break;
             }
